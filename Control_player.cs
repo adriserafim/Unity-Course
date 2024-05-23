@@ -46,5 +46,19 @@ public class Conf_game : MonoBehaviour
         
         transform.Translate(direction * speed * Time.deltaTime); // Sendo assim, se for colocada uma variável no lugar do valor fixo, deixa o código com mais dinamismo
         // OBS: A Unity permite que você possa trocar esse vetor durante o testes do jogo, ajudando a ajustar o jogo
+
+        // Colocando a logica para a movimentação do personagem 
+        if(direction != Vector3.zero)
+        {
+            GetComponent<Animator>().SetBool("Moving", true); // GetComponent<> é o comando para acessar a abas dentro da Unity que não tem uma configuração especifica
+        }
+        else
+        {
+            GetComponent<Animator>().SetBool("Moving", false); // .SetBool permite trocar uma condição booleana de estado
+        }
+
+        // LEMBRETE: (Variável ou equação) != (Valor desejado) Serve para dizer para o computador avaliar se a variável ou a equação é diferente de do valor que você deseja
+        // Vector3.zero é como definimos os trés vetores (X,Y,Z) como zero, pois caso fizecemos (0,0,0) pode ocorer erro de sintaxe no código mais para frente
+
     }
 }
