@@ -7,6 +7,10 @@ public class Conf_game : MonoBehaviour
     // Ajuste de velocidade
     public float speed = 10;
 
+    // Ajuste de Stand by
+    private bool stand_by_loop = false;
+    public int stand_by = 0;
+
     // Update is called once per frame
     void Update() // Aqui é a função resposavel para executar as ações enquanto o jogo estiver rodando
     {
@@ -59,6 +63,25 @@ public class Conf_game : MonoBehaviour
 
         // LEMBRETE: (Variável ou equação) != (Valor desejado) Serve para dizer para o computador avaliar se a variável ou a equação é diferente de do valor que você deseja
         // Vector3.zero é como definimos os trés vetores (X,Y,Z) como zero, pois caso fizecemos (0,0,0) pode ocorer erro de sintaxe no código mais para frente
-
+        
+        // Colocando animação de stand by
+        if(direction != Vector3.zero) // Vou fazer o if novmente só por organizacionais e fins didaticos
+        {
+            stand_by_loop = true;
+        }
+        else
+        {
+            stand_by_loop = false;
+        }
+        while(stand_by_loop)
+        {
+            stand_by = 1;
+            GetComponent<Animator>().SetInteger("Stand_by",stand_by);
+//            Thread.Sleep(2000); // O tempo esta dando erro
+            stand_by_loop = false;
+        }
+        stand_by = 0;
+        GetComponent<Animator>().SetInteger("Stand_by",stand_by);
+        // Estou querendo colocar a duas animações para funcionar enquanto o personagem estiver em stand by
     }
 }
